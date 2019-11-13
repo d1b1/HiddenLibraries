@@ -7,34 +7,42 @@ const algolia = require('../services/algolia');
 const takeshape = require('../services/takeshape')
 
 // Setup the index.
-const index = algolia.initIndex('cheese');
+const index = algolia.initIndex('store');
 
 module.exports = (req, res) => {
 
-	if (!req.query.contentType) {
-		res.status(200).send('Sorry you need to the the content type. ?contentType=cheese')
-		return
-	}
-
 	// Set the query name.
-	var queryName = 'get' + titleCase(req.query.contentType) + 'List'
+	var queryName = 'getStoreList'
 
 	// Set the Query for the content type.
 	var query = `{
 		${queryName} {
 			items {
 				_id
-		    address
-		    store {
-		      relationship {
-		        _id
-		        states
-		        town
-		      }
-		      whatTypeOfBook
+		    location {
+		      city
+		      country
+		      stateOrProvence
+		      streetAddress
+		      zipcode
 		    }
+		    logo {
+		      _id
+		      caption
+		      credit
+		      description
+		      filename
+		      mimeType
+		      path
+		      sourceUrl
+		      title
+		      uploadStatus
+		    }
+		    otherInterest
 		    storeName
+		    typeOfStore
 		    website
+		    whatTypeOfBook
 			}
 		}
 	}

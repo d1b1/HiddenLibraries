@@ -24,23 +24,38 @@ module.exports = function(req, res) {
 	var query = ` {
 		${body.data.queryName}(_id: "${body.data.contentId}") {
 			_id
-			address
-			store {
-				relationship {
-					_id
-					states
-					town
-				}
-				whatTypeOfBook
-			}
-			storeName
-			website
+	    location {
+	      city
+	      country
+	      stateOrProvence
+	      streetAddress
+	      zipcode
+	    }
+	    logo {
+	      _id
+	      caption
+	      credit
+	      description
+	      filename
+	      mimeType
+	      path
+	      sourceUrl
+	      title
+	      uploadStatus
+	    }
+	    otherInterest
+	    storeName
+	    typeOfStore
+	    website
+	    whatTypeOfBook
 		}
 	}`;
 
 	takeshape(query).then(result => {
 
-		console.log('Results', result);
+		console.log('')
+		console.log(result)
+		console.log()
 
 		var obj = result.data[body.data.queryName];
 		obj.objectID = obj._id
