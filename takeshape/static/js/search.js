@@ -3,7 +3,7 @@
 app({
   appId: 'OBBTFVLBPT',
   apiKey: 'b2bb1464328d945084725777e82f0536',
-  indexName: 'cheese',
+  indexName: 'HiddenLibraries',
   searchParameters: {
     hitsPerPage: 10,
   },
@@ -44,7 +44,7 @@ function app(opts) {
       },
       transformData: {
         item(item) {
-					console.log(item);
+          console.log(item);
           /* eslint-disable no-param-reassign */
           // item.starsLayout = getStarsHTML(item.rating);
           // item.categories = getCategoryBreadcrumb(item);

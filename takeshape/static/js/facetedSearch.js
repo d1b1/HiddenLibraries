@@ -62,9 +62,11 @@ function app(opts) {
 								</h3>
 
 								<span class="clearfix">
-									<b>Aged</b>: {{ characteristics.aged }},
-									<b>Milks</b>: {{ characteristics.milk }},
-									<b>Texture</b>: {{ characteristics.texture }}
+									<b>Store</b>: {{ typeOfStore }} <br>
+									<b>Book</b>: {{ whatTypeOfBook }} <br>
+									<b>location</b>: {{ location.city }} {{ location.state }} {{ location.country }}  <br>
+									<b>Interest</b>: {{ otherInterest }} <br>
+									<b>Website</b>: <a href="{{website}}" target="_blank"> {{website}}</a> </b>
 								</span>
 
 							</div>
@@ -112,30 +114,11 @@ function app(opts) {
 		})
 	);
 
-	// Use this widget to add the list of Coverings.
-	search.addWidget(
-		instantsearch.widgets.refinementList({
-			container: '#covering',
-			attribute: 'characteristics.covering',
-			showMore: false,
-			showMoreLimit: 10,
-			searchable: false,
-			templates: {
-				item: `
-					<a href="{{url}}" style="{{#isRefined}}font-weight: bold{{/isRefined}}">
-						<span>{{label}} ({{count}})</span>
-					</a>
-				`,
-				noResults: '<div class="sffv_no-results">No matching brands.</div>',
-				noRefinementRoot: '<div class="sffv_no-results">No matching brands.</div>'
-			}
-		})
-	);
 
 	// Use this widget to add the list of Coverings.
 	search.addWidget(
 		instantsearch.widgets.refinementList({
-			container: '#locationcity',
+			container: '#city',
 			attribute: 'location.city',
 			showMore: false,
 			showMoreLimit: 10,
@@ -166,8 +149,32 @@ function app(opts) {
 
 	search.addWidget(
 		instantsearch.widgets.refinementList({
-			container: '#milk',
-			attribute: 'characteristics.milk',
+			container: '#type',
+			attribute: 'whatTypeOfBook',
+			showMore: false,
+			showMoreLimit: 10,
+			searchable: false,
+			cssClasses: {
+				searchableInput: "input is-large",
+			},
+			templates: {
+				item: `
+					<a href="{{url}}" style="{{#isRefined}}font-weight: bold{{/isRefined}}">
+						<span>
+							{{label}} ({{count}})
+						</span>
+					</a>
+				`,
+				noResults: '<div class="sffv_no-results">No matching brands.</div>',
+				noRefinementRoot: '<div class="sffv_no-results">No matching brands.</div>'
+			}
+		})
+	);
+
+		search.addWidget(
+		instantsearch.widgets.refinementList({
+			container: '#store',
+			attribute: 'typeOfStore',
 			showMore: false,
 			showMoreLimit: 10,
 			searchable: false,
@@ -190,8 +197,8 @@ function app(opts) {
 
 	search.addWidget(
 		instantsearch.widgets.refinementList({
-			container: '#aged',
-			attribute: 'characteristics.aged',
+			container: '#interest',
+			attribute: 'otherInterest',
 			showMore: false,
 			showMoreLimit: 10,
 			searchable: false,
